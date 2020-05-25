@@ -1,0 +1,20 @@
+en:
+  activerecord:
+    models:
+      user:
+        one: User
+        other: Users
+      admin:
+        one: Administrator
+        other: Administrators
+    attributes:
+      user:
+        id: Id
+        email: Email
+        created_at: Created at
+        updated_at: Updated at
+      admin:
+        id: Id
+        email: Email
+        created_at: Created at
+        updated_at: Updated at
