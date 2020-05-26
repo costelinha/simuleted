@@ -1,5 +1,19 @@
 {
   "name": "time_to_answer",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "bootstrap": "4.4.1",
+    "fastclick": "1.0.6",
+    "font-awesome": "4.6.3",
+    "jquery": "3.4.1",
+    "jquery.easing": "1.4.1",
+    "malihu-custom-scrollbar-plugin": "3.1.3",
+    "nprogress": "0.2.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/costelinha/simuleted.git",
+  "author": "Andre <andregomesngr@gmail.com>",
+  "license": "MIT"
 }
