@@ -11,10 +11,14 @@ en:
       user:
         id: Id
         email: Email
+        password: Password
+        password_confirmation: Password Confirmation
         created_at: Created at
         updated_at: Updated at
       admin:
         id: Id
         email: Email
+        password: Password
+        password_confirmation: Password Confirmation
         created_at: Created at
         updated_at: Updated at
