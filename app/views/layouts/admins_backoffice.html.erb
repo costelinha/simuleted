@@ -35,23 +35,23 @@
         <div class="sidebar-brand-text mx-3">Admin <sup></sup></div>
       </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <%= link_to admins_backoffice_welcome_index_path, class:"nav-link" do %>
+          <i class="fas fa-fw fa-tachometer-alt"></i> Dashboard
+          <% end %>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-users fa-tachometer-alt"></i>
-          <span>Administrators</span></a>
+        <%= link_to admins_backoffice_admins_index_path, class:"nav-link" do %>
+        <i class="fas fa-users fa-tachometer-alt"></i> Administrators
+        <% end %>
       </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
