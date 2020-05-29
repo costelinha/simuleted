@@ -3,26 +3,42 @@ namespace :dev do
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
     if Rails.env.development?
-      show_spinner() { %x(rails db:drop db:create db:migrate dev:add_default_admin dev:add_default_user) }  
+      show_spinner() { %x(rails db:drop db:create db:migrate dev:add_admins dev:add_users) }  
     end
   end
 
-  desc "Adiciona o administrador padrão"
-  task add_default_admin: :environment do
+  desc "Popula o banco com administradores"
+  task add_admins: :environment do
     Admin.create!(
     email: 'admin@admin.com',
     password: PASS,
     password_confirmation: PASS
     )
+    
+    10.times do |i|
+      Admin.create!(
+      email: Faker::Internet.email,
+      password: PASS,
+      password_confirmation: PASS
+      )
+    end
   end
 
-  desc "Adiciona o usuário padrão"
-  task add_default_user: :environment do
+  desc "Popula o banco como usuários"
+  task add_users: :environment do
     User.create!(
     email: 'user@user.com',
     password: PASS,
     password_confirmation: PASS
     )
+
+    10.times do |i|
+      User.create!(
+      email: Faker::Internet.email,
+      password: PASS,
+      password_confirmation: PASS
+      )
+    end
   end
 
   private
