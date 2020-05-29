@@ -14,9 +14,9 @@
         <td> <%= admin.id %> </td>
         <td> <%= admin.email %> </td>
         <td style="width: 150px">
-          <button type="button" class="btn btn-warning btn-circle">
-            <i class="fas fa-edit"></i>
-          </button>
+          <%= link_to edit_admins_backoffice_admin_path(admin), class: "btn btn-warning btn-circle" do %>
+          <i class="fas fa-edit"></i>
+          <% end %>
           <button type="button" class="btn btn-danger btn-circle">
             <i class="fas fa-trash"></i>
           </button>
