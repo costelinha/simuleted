@@ -6,7 +6,8 @@ namespace :dev do
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
     if Rails.env.development?
-      show_spinner() { %x(rails db:drop db:create db:migrate dev:add_admins dev:add_users dev:add_subjects) }  
+      show_spinner('Resetting bd...') { %x(rails db:drop db:create db:migrate) }
+      show_spinner('Populating db...') { %x(rails dev:add_admins dev:add_users dev:add_subjects dev:add_questions) }  
     end
   end
 
@@ -54,9 +55,21 @@ namespace :dev do
     end
   end
 
+  desc "Popula o banco com perguntas"
+  task add_questions: :environment do
+    Subject.all.each do |subject|
+      rand(5..10).times do |i|
+        Question.create!(
+          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+          subject: subject
+        )
+      end
+    end
+  end
+
   private
-  def show_spinner()
-    spinner = TTY::Spinner.new("[:spinner] Loading tasks...")
+  def show_spinner(text)
+    spinner = TTY::Spinner.new("[:spinner] #{text}")
     spinner.auto_spin
     yield
     spinner.success('Done!')    
