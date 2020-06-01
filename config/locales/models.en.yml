@@ -7,6 +7,15 @@ en:
       admin:
         one: Administrator
         other: Administrators
+      subject:
+        one: Subject
+        other: Subjects
+      question:
+        one: Question
+        other: Questions
+      answer:
+        one: Answer
+        other: Answers
     attributes:
       user:
         id: Id
@@ -22,3 +31,15 @@ en:
         password_confirmation: Password Confirmation
         created_at: Created at
         updated_at: Updated at
+      subject:
+        id: Id
+        description: Description
+        created_at: Created at
+        updated_at: Updated at
+      question:
+        id: Id
+        description: Description
+        subject: Subject
+        created_at: Created at
+        updated_at: Updated at
+      #pending

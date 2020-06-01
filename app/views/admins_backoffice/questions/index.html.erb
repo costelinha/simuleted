@@ -10,8 +10,8 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Description</th>
-        <th>Subject</th>
+        <th><%= attribute_translation(@questions, :description) %></th>
+        <th><%= attribute_translation(@questions, :subject) %></th>
         <th>
           <%= link_to new_admins_backoffice_question_path, class: "btn btn-success btn-circle" do %>
           <i class="fas fa-plus"></i>

@@ -7,6 +7,15 @@ pt-BR:
       admin:
         one: Administrador
         other: Administradores
+      subject:
+        one: Assunto
+        other: Assuntos
+      question:
+        one: Questão
+        other: Questões
+      answer:
+        one: Resposta
+        other: Respostas
     attributes:
       user:
         id: Código
@@ -22,3 +31,15 @@ pt-BR:
         password_confirmation: Condirmação da Senha
         created_at: Criado em
         updated_at: Atualizado em
+      subject:
+        id: Código
+        description: Descrição
+        created_at: Criado em
+        updated_at: Atualizado em
+      question:
+        id: Código
+        description: Descrição
+        subject: Assunto
+        created_at: Criado em
+        updated_at: Atualizado em
+      #pending
