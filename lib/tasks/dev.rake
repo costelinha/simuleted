@@ -55,14 +55,24 @@ namespace :dev do
     end
   end
 
-  desc "Popula o banco com perguntas"
+  desc "Popula o banco com perguntas e respostas"
   task add_questions: :environment do
     Subject.all.each do |subject|
       rand(5..10).times do |i|
-        Question.create!(
+        params = { question: {
           description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
-          subject: subject
-        )
+          subject: subject,
+          answers_attributes: []} 
+        }
+
+        rand(3..5).times do |j|
+          params[:question][:answers_attributes].push({ description: Faker::Lorem.sentence, correct: false })
+        end
+
+        index =  rand(params[:question][:answers_attributes].count)
+        params[:question][:answers_attributes][index] = { description: Faker::Lorem.sentence, correct: true }
+
+        Question.create!(params[:question])        
       end
     end
   end
