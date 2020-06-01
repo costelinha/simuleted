@@ -1,7 +1,7 @@
 namespace :dev do
 
   DEFAULT_PASS = 123456
-  DEFAULT_PATH = File.join(Rails.root, 'lib', 'tmp')
+  DEFAULT_PATH = File.join(Rails.root, 'lib', 'tmp',)
   
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
@@ -47,8 +47,7 @@ namespace :dev do
 
   desc "Popula o banco com assuntos(subjects)"
   task add_subjects: :environment do
-    file_name = 'subjects.txt'
-    file_path = File.join(DEFAULT_PATH, file_name)
+    file_path = File.join(DEFAULT_PATH, 'subjects.txt')
     
     File.open(file_path, 'r').each do |line|
       Subject.create!(description: line.strip())
@@ -59,25 +58,38 @@ namespace :dev do
   task add_questions: :environment do
     Subject.all.each do |subject|
       rand(5..10).times do |i|
-        params = { question: {
-          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
-          subject: subject,
-          answers_attributes: []} 
-        }
-
-        rand(3..5).times do |j|
-          params[:question][:answers_attributes].push({ description: Faker::Lorem.sentence, correct: false })
-        end
-
-        index =  rand(params[:question][:answers_attributes].count)
-        params[:question][:answers_attributes][index] = { description: Faker::Lorem.sentence, correct: true }
-
+        params = question_params(subject)
+        answers = params[:question][:answers_attributes]
+        add_answer(answers)
+        elect_response(answers)   
         Question.create!(params[:question])        
       end
     end
   end
 
   private
+  def question_params(subject)
+    params = { question: {
+      description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+      subject: subject,
+      answers_attributes: []} 
+    }
+  end
+
+  def answer_params(array = [], correct=false)
+    { description: Faker::Lorem.sentence, correct: correct }
+  end
+
+  def add_answer(array = [], params)
+    rand(3..5).times do |j|
+      array.push(answer_params)
+    end
+  end
+
+  def elect_response(array, correct = false)
+    array[rand(array.count)] = answer_params(array, true) 
+  end
+
   def show_spinner(text)
     spinner = TTY::Spinner.new("[:spinner] #{text}")
     spinner.auto_spin
