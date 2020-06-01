@@ -69,25 +69,25 @@ namespace :dev do
 
   private
   def question_params(subject)
-    params = { question: {
+     { question: {
       description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
       subject: subject,
       answers_attributes: []} 
     }
   end
 
-  def answer_params(array = [], correct=false)
+  def answer_params(correct=false)
     { description: Faker::Lorem.sentence, correct: correct }
   end
 
-  def add_answer(array = [], params)
+  def add_answer(array = [])
     rand(3..5).times do |j|
       array.push(answer_params)
     end
   end
 
   def elect_response(array, correct = false)
-    array[rand(array.count)] = answer_params(array, true) 
+    array[rand(array.count)] = answer_params(true) 
   end
 
   def show_spinner(text)
