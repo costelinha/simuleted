@@ -33,7 +33,7 @@ class AdminsBackoffice::SubjectsController < AdminsBackofficeController
     if @subject.destroy()
       redirect_to admins_backoffice_subjects_path, notice: "Subject deleted successfully"
     else
-      render :edit
+      render :index
     end
   end
 

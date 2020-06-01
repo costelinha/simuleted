@@ -34,7 +34,7 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
     if @admin.destroy()
       redirect_to admins_backoffice_admins_path, notice: "Administrator deleted successfully"
     else
-      render :edit
+      render :index
     end
   end
 
