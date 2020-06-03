@@ -1,17 +1,34 @@
-<% @questions.each do |question| %>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"> <%= question.description %> </h3>
-  </div>
-  <div class="panel-body">
-    <ul>
-      <% question.answers.each do |answer| %>
-      <li> <%= answer.description%> </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-<% end %>
-<div class="text-center">
-  <%= paginate @questions %>
-</div>
+ <div class="jumbotron">
+   <% unless params[:term] %>
+   <h1 class="text-center"> Welcome </h1>
+   <% else %>
+   <h2 class="text-center"><%= "\"#{params[:term]}\" results" %></h2>
+   <% end %>
+ </div>
+ <% @questions.each do |question| %>
+ <%= form_with url: site_answer_path, local: true do |form|%>
+ <div class="panel panel-default">
+   <div class="panel-heading">
+     <h3 class="panel-title"> <%= question.description %> </h3>
+   </div>
+   <div class="panel-body">
+     <ul>
+       <% question.answers.each do |answer| %>
+       <li style="list-style:none;">
+         <div class="radio">
+           <label>
+             <%= radio_button_tag 'answer', answer.id%>
+             <%= answer.description%>
+           </label>
+         </div>
+       </li>
+       <% end %>
+       <%=form.submit 'Reply', class:"btn btn-primary" %>
+     </ul>
+   </div>
+ </div>
+ <% end %>
+ <% end %>
+ <div class="text-center">
+   <%= paginate @questions %>
+ </div>

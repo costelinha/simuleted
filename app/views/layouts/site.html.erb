@@ -70,14 +70,6 @@
       </div>
       <!--/.container-fluid -->
     </nav>
-
-    <!-- Main component for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <h1>Site::Welcome#index</h1>
-      <p>Find me in app/views/site/welcome/index.html.erb</p>
-      <p><strong>Admin:</strong> <%= admin_signed_in? ? current_admin.email : 'Desconnected'  %> </p>
-      <p><strong>User:</strong> <%= user_signed_in? ? current_user.email : 'Desconnected'  %> </p>
-    </div>
     <%= yield %>
   </div> <!-- /container -->
 
