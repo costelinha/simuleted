@@ -5,4 +5,15 @@ class Question < ApplicationRecord
 
   #Kaminari (pagination)
   paginates_per 5
+
+  #Scopes
+  scope :_search, ->(term, page) {
+    includes(:answers)
+    .where("lower(description) LIKE ?", "%#{term.downcase}%")
+    .page page
+  }
+
+  scope :last_questions, ->(page){
+    includes(:answers).order("id desc").page page
+  }
 end
