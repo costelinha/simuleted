@@ -6,7 +6,7 @@
  <div class="panel panel-default">
    <div class="panel-heading">
      <h3 class="panel-title">
-       <%= link_to  question.subject.description, site_search_subject_path(question.subject_id, question.subject.description ), class:"label label-primary", style:"color: white; margin-right: 3px;"%>
+       <%= link_to  "#{question.subject.description}-#{question.subject.questions.count} ", site_search_subject_path(question.subject_id, question.subject.description ), class:"label label-primary", style:"color: white; margin-right: 3px;"%>
        <%= question.description %>
      </h3>
    </div>
