@@ -1,15 +1,14 @@
  <div class="jumbotron">
-   <% unless params[:term] %>
-   <h1 class="text-center"> Welcome </h1>
-   <% else %>
-   <h2 class="text-center"><%= "\"#{params[:term]}\" results" %></h2>
-   <% end %>
+   <h2 class="text-center"> <%= msg_jumbotron %> </h2>
  </div>
  <% @questions.each do |question| %>
  <%= form_with url: site_answer_path do |form|%>
  <div class="panel panel-default">
    <div class="panel-heading">
-     <h3 class="panel-title"> <%= question.description %> </h3>
+     <h3 class="panel-title">
+       <%= link_to  question.subject.description, site_search_subject_path(question.subject_id, question.subject.description ), class:"label label-primary", style:"color: white; margin-right: 3px;"%>
+       <%= question.description %>
+     </h3>
    </div>
    <div class="panel-body">
      <ul>
@@ -23,7 +22,7 @@
          </div>
        </li>
        <% end %>
-       <%=form.submit 'Reply', class:"btn btn-primary", id:"#{question.id}" %>
+       <%=form.submit 'Reply', class:"btn btn-default", id:"#{question.id}" %>
      </ul>
    </div>
  </div>

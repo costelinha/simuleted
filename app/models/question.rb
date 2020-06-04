@@ -8,12 +8,18 @@ class Question < ApplicationRecord
 
   #Scopes
   scope :_search, ->(term, page) {
-    includes(:answers)
-    .where("lower(description) LIKE ?", "%#{term.downcase}%")
+    includes(:answers, :subject)
+    .where("lower(description) LIKE ?", "%#{term.to_s.downcase}%")
+    .page page
+  }
+
+  scope :_search_subject, ->(page, subject_id) {
+    includes(:answers, :subject)
+    .where(subject_id: subject_id)
     .page page
   }
 
   scope :last_questions, ->(page){
-    includes(:answers).order("id desc").page page
+    includes(:answers, :subject).order("id desc").page page
   }
 end
