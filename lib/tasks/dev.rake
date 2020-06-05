@@ -33,7 +33,9 @@ namespace :dev do
     User.create!(
     email: 'user@user.com',
     password: DEFAULT_PASS,
-    password_confirmation: DEFAULT_PASS
+    password_confirmation: DEFAULT_PASS,
+    first_name: 'Fulano',
+    last_name: 'Delavega'
     )
 
     10.times do |i|

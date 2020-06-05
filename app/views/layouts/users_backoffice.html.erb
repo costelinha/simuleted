@@ -46,7 +46,16 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
               <ul class="nav side-menu">
-                <li><a href="javascript:void(0)"><i class="fa fa-user"></i>Profile Data</a></li>
+                <li>
+                  <%= link_to users_backoffice_welcome_index_path do %>
+                  <i class="fa fa-home"></i>Home
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to users_backoffice_profile_path do %>
+                  <i class="fa fa-user"></i>Profile Data
+                  <% end %>
+                </li>
               </ul>
             </div>
 
@@ -175,9 +184,7 @@
       <div class="right_col" role="main">
         <div class="">
           <div class="page-title">
-            <div class="title_left">
-              <%= yield %>
-            </div>
+            <%= yield %>
           </div>
         </div>
       </div>
@@ -196,6 +203,16 @@
 
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'users_backoffice' %>
+  <% if notice %>
+  <%= javascript_tag do %>
+  $.bootstrapGrowl('<%= notice %>', {
+  type: 'success', // (null, 'info', 'danger', 'success')
+  align: 'right', // ('left', 'right', or 'center')
+  allow_dismiss: true, // If true then will display a cross to close the popup.
+  stackup_spacing: 10 // spacing between consecutively stacked growls.
+  });
+  <% end %>
+  <% end %>
 </body>
 
 </html>
