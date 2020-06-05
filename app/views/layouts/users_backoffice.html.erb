@@ -34,8 +34,10 @@
               <%= image_tag 'img.jpg', alt:"...", class:"img-circle profile_img" %>
             </div>
             <div class="profile_info">
-              <span>Welcome,</span>
-              <h2>John Doe</h2>
+              <span>Welcome</span>
+              <% unless current_user.full_name.empty? %>
+              <h2><%= current_user.full_name %></h2>
+              <% end %>
             </div>
           </div>
           <!-- /menu profile quick info -->
