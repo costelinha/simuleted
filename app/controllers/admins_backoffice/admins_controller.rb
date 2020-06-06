@@ -23,6 +23,7 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
   end
 
   def update
+    AdminMailer.update_email(current_admin, @admin).deliver_now
     if @admin.update(params_admin)
       redirect_to admins_backoffice_admins_path, notice: "Administrator updated successfully"
     else
