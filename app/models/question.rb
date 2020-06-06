@@ -22,4 +22,12 @@ class Question < ApplicationRecord
   scope :last_questions, ->(page){
     includes(:answers, :subject).order("id desc").page page
   }
+
+  #Callbacks
+  after_create :set_statistic
+
+  private
+  def set_statistic
+    AdminStatistic.set_event(AdminStatistic::EVENTS[:total_questions])
+  end 
 end

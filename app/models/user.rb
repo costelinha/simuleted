@@ -10,8 +10,16 @@ class User < ApplicationRecord
   #Validations
   validates :first_name, presence: true, length: {minimum: 3}, on: :update
 
-  #Virtual Atributes
+   #Virtual Atributes
   def full_name
     [self.first_name, self.last_name].join(' ')
   end
+
+  #Callbacks
+  after_create :set_statistic
+
+  private
+  def set_statistic
+    AdminStatistic.set_event(AdminStatistic::EVENTS[:total_users])
+  end 
 end
